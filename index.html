@@ -2,6 +2,126 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>KomputaVillage | Computer & Phone Components</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <style>
+    :root {
+      --bg:#0b0f0d;
+      --card:#121816;
+      --accent:#19a463;
+      --text:#e6f2ec;
+      --muted:#9fb5ab;
+    }
+    body { background:var(--bg); color:var(--text); }
+    nav, footer { background:#0f1412; }
+    section, article { background:var(--card); padding:1.5rem; border-radius:12px; }
+    h1,h2,h3 { color:#ffffff; }
+    .price { color:var(--accent); font-weight:700; }
+    .usd { color:var(--muted); font-size:.85rem; }
+    img { border-radius:10px; }
+  </style>
+</head>
+
+<body>
+
+<nav class="container-fluid">
+  <ul>
+    <li style="display:flex;align-items:center;gap:.6rem;">
+      <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="#19a463"/>
+        <circle cx="50" cy="50" r="10" fill="#0b0f0d"/>
+        <circle cx="20" cy="50" r="6" fill="#0b0f0d"/>
+        <circle cx="80" cy="50" r="6" fill="#0b0f0d"/>
+        <circle cx="50" cy="20" r="6" fill="#0b0f0d"/>
+        <circle cx="50" cy="80" r="6" fill="#0b0f0d"/>
+      </svg>
+      <strong>KomputaVillage</strong>
+    </li>
+  </ul>
+  <ul>
+    <li><a href="#">Components</a></li>
+    <li><a href="#">Bulk Orders</a></li>
+    <li><a href="#" role="button">WhatsApp</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<section>
+  <hgroup>
+    <h2>Quality Computer & Phone Components</h2>
+    <h3>For technicians, resellers, and institutions</h3>
+  </hgroup>
+  <p>
+    KomputaVillage supplies tested internal components for phones and computers.
+    We focus on parts that are practical to ship, easy to replace, and cost-effective
+    for repair and resale.
+  </p>
+  <p>
+    Delivery available across Nigeria. 
+    Bulk and export orders supported across Africa.
+  </p>
+</section>
+
+<div class="grid">
+
+<section>
+  <h3>iPhone Screens</h3>
+  <img src="DALLE_IMAGE_IPHONE_SCREEN_URL_HERE" alt="iPhone replacement screen">
+  <p class="price">₦38,000 <span class="usd">(~$25)</span></p>
+</section>
+
+<section>
+  <h3>DDR4 RAM – 8GB</h3>
+  <img src="DALLE_IMAGE_RAM_URL_HERE" alt="DDR4 RAM module">
+  <p class="price">₦22,000 <span class="usd">(~$14)</span></p>
+</section>
+
+<section>
+  <h3>256GB SSD</h3>
+  <img src="DALLE_IMAGE_SSD_URL_HERE" alt="Solid state drive">
+  <p class="price">₦28,000 <span class="usd">(~$18)</span></p>
+</section>
+
+<section>
+  <h3>Dell Motherboards</h3>
+  <img src="DALLE_IMAGE_MOTHERBOARD_URL_HERE" alt="Desktop motherboard">
+  <p class="price">₦45,000 <span class="usd">(~$30)</span></p>
+</section>
+
+</div>
+
+</main>
+
+<section>
+  <div class="container">
+    <article>
+      <hgroup>
+        <h2>Bulk Supply</h2>
+        <h3>Repair shops • Schools • NGOs • Resellers</h3>
+      </hgroup>
+      <form class="grid">
+        <input type="text" placeholder="Business name" required>
+        <input type="email" placeholder="Email address" required>
+        <button type="submit" onclick="event.preventDefault()">Request pricing</button>
+      </form>
+    </article>
+  </div>
+</section>
+
+<footer class="container">
+  <small>
+    Nationwide Nigeria Delivery • Africa-wide Shipping • Bulk Orders Supported
+  </small>
+</footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <title>KomputaVillage – Africa’s IT Components Marketplace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
