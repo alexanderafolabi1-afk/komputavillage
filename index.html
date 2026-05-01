@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>KomputaVillage | Components & Spares</title>
+<title>KomputaVillage | Computer & Phone Components</title>
+<meta name="description" content="KomputaVillage supplies quality computer and phone components across Nigeria and Africa. Bulk supply available.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/svg+xml"
@@ -23,21 +24,30 @@ href="data:image/svg+xml;utf8,
 --bg:#0a0f0d;
 --panel:#121816;
 --accent:#19a463;
---text:#e8f2ec;
---muted:#9bb3a8;
+--text:#ecf4ef;
+--muted:#a6bfb4;
 }
 html,body{background:var(--bg);color:var(--text);}
 nav,footer{background:#0e1412;}
-section,article{background:var(--panel);border-radius:14px;padding:1.5rem;}
-h1,h2,h3,strong{color:#fff;}
-.price{color:var(--accent);font-weight:700;}
-.usd{color:var(--muted);font-size:.85rem;}
+main{margin-top:2rem}
+section,article{background:var(--panel);border-radius:16px;padding:2rem;}
+h1,h2,h3{letter-spacing:-.02em}
+h2{font-size:2rem}
+h3{font-size:1.25rem}
+p{font-size:1.05rem;line-height:1.65;color:var(--muted)}
+strong{color:#fff}
+.price{color:var(--accent);font-weight:800;font-size:1.3rem}
+.usd{font-size:.85rem;color:#7fae96}
 img.product{
 width:100%;
-height:220px;
+height:240px;
 object-fit:cover;
-border-radius:12px;
-background:#1c2622;
+border-radius:14px;
+}
+blockquote{
+border-left:4px solid var(--accent);
+padding-left:1rem;
+color:#cfe6db;
 }
 </style>
 </head>
@@ -46,24 +56,14 @@ background:#1c2622;
 
 <nav class="container-fluid">
 <ul>
-<li style="display:flex;gap:.6rem;align-items:center;">
-<svg width="40" height="40" viewBox="0 0 100 100">
-<rect x="5" y="5" width="90" height="90" rx="18" fill="#19a463"/>
-<circle cx="50" cy="50" r="16" fill="#0a0f0d"/>
-<circle cx="25" cy="50" r="6" fill="#0a0f0d"/>
-<circle cx="75" cy="50" r="6" fill="#0a0f0d"/>
-<circle cx="50" cy="25" r="6" fill="#0a0f0d"/>
-<circle cx="50" cy="75" r="6" fill="#0a0f0d"/>
-</svg>
-<strong>KomputaVillage</strong>
-</li>
+<li><strong>KomputaVillage</strong></li>
 </ul>
 <ul>
-<li><a href="#">Components</a></li>
-<li><a href="#">Bulk Supply</a></li>
+<li><a href="#products">Components</a></li>
+<li><a href="#bulk">Bulk Orders</a></li>
 <li>
-<a href="https://wa.me/2348000000000?text=Hello%20KomputaVillage%2C%20I%20want%20to%20buy%20components"
-target="_blank" role="button">WhatsApp</a>
+<a href="https://wa.me/2348000000000?text=Hello%20KomputaVillage%2C%20I%20need%20components"
+role="button">WhatsApp</a>
 </li>
 </ul>
 </nav>
@@ -72,52 +72,78 @@ target="_blank" role="button">WhatsApp</a>
 
 <section>
 <hgroup>
-<h2>Computer & Phone Components</h2>
-<h3>Reliable parts for repair and resale</h3>
+<h2>Quality Computer & Phone Components</h2>
+<h3>Trusted supply for technicians, resellers & institutions</h3>
 </hgroup>
 <p>
-KomputaVillage supplies quality internal components for phones and computers.
-Our focus is on parts that are reliable, easy to replace, and suitable for
-repair and resale across Nigeria and Africa.
+KomputaVillage provides carefully selected internal components for phones and computers.
+Our parts are used by repair professionals, resellers, schools, and organizations
+that value reliability and consistency.
 </p>
-<p>
-Nigeria-wide delivery • Africa-wide bulk shipping
-</p>
+<p><strong>Nigeria-wide delivery • Africa-wide bulk supply</strong></p>
 </section>
 
-<div class="grid">
+<div id="products" class="grid">
 
 <section>
-<h3>iPhone Screens</h3>
-<img class="product" src="DALLE_IMAGE_IPHONE_SCREEN_URL" alt="iPhone replacement screen">
-<p class="price">₦38,000 <span class="usd">(~$25)</span></p>
+<h3>iPhone Replacement Screens</h3>
+<img class="product" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80" alt="iPhone screen">
+<p class="price">₦65,000 <span class="usd">(~$43)</span></p>
+<p>Tested, clean display. Ideal for professional repairs.</p>
 </section>
 
 <section>
-<h3>DDR4 RAM (8GB)</h3>
-<img class="product" src="DALLE_IMAGE_RAM_URL" alt="DDR4 RAM module">
-<p class="price">₦22,000 <span class="usd">(~$14)</span></p>
+<h3>DDR4 RAM – 8GB</h3>
+<img class="product" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d1?auto=format&fit=crop&w=1200&q=80" alt="DDR4 RAM">
+<p class="price">₦35,000 <span class="usd">(~$23)</span></p>
+<p>Compatible with laptops and desktops.</p>
 </section>
 
 <section>
 <h3>256GB SSD</h3>
-<img class="product" src="DALLE_IMAGE_SSD_URL" alt="Solid state drive">
-<p class="price">₦28,000 <span class="usd">(~$18)</span></p>
+<img class="product" src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1200&q=80" alt="SSD drive">
+<p class="price">₦48,000 <span class="usd">(~$32)</span></p>
+<p>Fast boot drives, health-checked.</p>
 </section>
 
 <section>
-<h3>Dell Motherboards</h3>
-<img class="product" src="DALLE_IMAGE_MOTHERBOARD_URL" alt="Desktop motherboard">
-<p class="price">₦45,000 <span class="usd">(~$30)</span></p>
+<h3>Dell Desktop Motherboards</h3>
+<img class="product" src="https://images.unsplash.com/photo-1587202372583-49330a15584d?auto=format&fit=crop&w=1200&q=80" alt="Motherboard">
+<p class="price">₦85,000 <span class="usd">(~$56)</span></p>
+<p>OptiPlex series. Bulk pricing available.</p>
 </section>
 
 </div>
+
+<section>
+<h2>Customer Feedback</h2>
+<blockquote>
+“Reliable supply and consistent quality. We use KomputaVillage for bulk repairs.”
+<br>— Lagos Computer Village Technician
+</blockquote>
+<blockquote>
+“Pricing makes sense for resale and delivery is dependable.”
+<br>— Accra IT Reseller
+</blockquote>
+</section>
+
+<section id="bulk">
+<h2>Bulk & Business Orders</h2>
+<p>
+For repair shops, NGOs, schools, and resellers looking for steady supply.
+</p>
+<form action="https://formspree.io/f/xxxxxx" method="POST">
+<input type="text" name="business" placeholder="Business name" required>
+<input type="email" name="email" placeholder="Email address" required>
+<button type="submit">Request Bulk Pricing</button>
+</form>
+</section>
 
 </main>
 
 <footer class="container">
 <small>
-Nationwide Nigeria Delivery • Africa-wide Shipping • Bulk Orders Supported
+© KomputaVillage • Nationwide Nigeria Delivery • Africa-wide Shipping
 </small>
 </footer>
 
