@@ -10,11 +10,11 @@ const stockConfig = {
 const gradeConfig = {
   A: { label: 'Grade A', className: 'bg-electric text-black' },
   B: { label: 'Grade B', className: 'bg-village text-black' },
-  Refurb: { label: 'Refurb', className: 'bg-blue-500 text-white' },
 }
 
 export default function ProductCard({ product }) {
-  const { id, name, specs, grade, price, image, stock, category } = product
+  const { id, name, spec, grade, price, images, stock, category, subcategory } = product
+  const mainImage = images?.[0] || 'https://source.unsplash.com/featured/600x400/?technology'
   const stockInfo = stockConfig[stock] || stockConfig['in-stock']
   const gradeInfo = gradeConfig[grade] || gradeConfig['A']
   const isSoldOut = stock === 'sold-out'
@@ -24,49 +24,39 @@ export default function ProductCard({ product }) {
       {/* Image */}
       <Link to={`/product/${id}`} className="block relative overflow-hidden bg-dark-hover aspect-[4/3]">
         <img
-          src={image}
+          src={mainImage}
           alt={name}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
-            e.target.src = `https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80`
+            e.target.src = 'https://source.unsplash.com/featured/600x400/?computer+hardware'
           }}
         />
-        {/* Grade badge */}
-        <span
-          className={`absolute top-3 left-3 text-xs font-syne font-bold px-2.5 py-1 rounded-lg ${gradeInfo.className}`}
-        >
+        <span className={`absolute top-3 left-3 text-xs font-syne font-bold px-2.5 py-1 rounded-lg ${gradeInfo.className}`}>
           {gradeInfo.label}
         </span>
-        {/* Stock badge */}
-        <span
-          className={`absolute top-3 right-3 text-xs font-dm font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm ${stockInfo.className}`}
-        >
+        <span className={`absolute top-3 right-3 text-xs font-dm font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm ${stockInfo.className}`}>
           {stockInfo.label}
         </span>
       </Link>
 
       {/* Content */}
       <div className="p-4 flex flex-col flex-grow gap-3">
-        {/* Category pill */}
         <span className="text-xs font-dm text-gray-500 uppercase tracking-widest">
-          {categoryLabel(category)}
+          {subcategory || categoryLabel(category)}
         </span>
 
-        {/* Name */}
         <Link to={`/product/${id}`} className="block">
           <h3 className="font-syne font-bold text-base text-white leading-snug group-hover:text-electric transition-colors">
             {name}
           </h3>
-          <p className="text-xs font-dm text-gray-500 mt-1 line-clamp-1">{specs}</p>
+          <p className="text-xs font-dm text-gray-500 mt-1 line-clamp-1">{spec}</p>
         </Link>
 
-        {/* Price */}
         <p className="font-syne font-black text-xl text-electric mt-auto">
           {formatPrice(price)}
         </p>
 
-        {/* WhatsApp CTA */}
         {isSoldOut ? (
           <button
             disabled
@@ -92,11 +82,14 @@ export default function ProductCard({ product }) {
 
 function categoryLabel(cat) {
   const map = {
-    iphones: 'iPhone',
-    laptops: 'Laptop / MacBook',
     'laptop-parts': 'Laptop Parts',
+    'desktop-components': 'Desktop',
+    'phone-parts': 'Phone Parts',
+    'server-enterprise': 'Server / Enterprise',
+    iphones: 'Complete iPhone',
+    laptops: 'Laptop / MacBook',
     consoles: 'Console',
-    headsets: 'Headset & Audio',
+    headsets: 'Audio & Headsets',
     'it-assets': 'IT Asset',
   }
   return map[cat] || cat

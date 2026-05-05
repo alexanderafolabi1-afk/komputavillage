@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Shield, Truck, MessageCircle, BadgeCheck } from 'lucide-react'
+import { ArrowRight, Shield, Truck, MessageCircle, BadgeCheck, Wrench } from 'lucide-react'
 
 const trustItems = [
-  { icon: Shield, label: 'UK-Sourced Stock' },
-  { icon: BadgeCheck, label: 'Tested & Graded' },
+  { icon: Shield, label: 'UK End-of-Life Stock' },
+  { icon: BadgeCheck, label: 'Tested Before Dispatch' },
   { icon: MessageCircle, label: 'WhatsApp Support' },
   { icon: Truck, label: 'Nationwide Delivery' },
+  { icon: Wrench, label: 'Builder & Repair Friendly' },
 ]
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-dark-bg">
-      {/* Background grid pattern */}
+      {/* Grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
@@ -20,7 +21,6 @@ export default function Hero() {
           backgroundSize: '60px 60px',
         }}
       />
-      {/* Glow blobs */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-electric/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-village/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -29,19 +29,19 @@ export default function Hero() {
         <div className="inline-flex items-center gap-2 bg-electric/10 border border-electric/20 rounded-full px-4 py-1.5 mb-6">
           <span className="w-2 h-2 rounded-full bg-electric animate-pulse" />
           <span className="text-electric text-xs font-dm font-semibold tracking-widest uppercase">
-            UK Grade A Stock · Live Now
+            UK End-of-Life Stock · Deconstructed & Graded
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="font-syne font-black text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
-          The Village Has{' '}
+        <h1 className="font-syne font-black text-4xl sm:text-5xl lg:text-7xl leading-[1.05] tracking-tight mb-4">
+          Every Part.{' '}
           <br className="hidden sm:block" />
-          <span className="text-electric">Everything.</span>
+          <span className="text-electric">Every Build.</span>
         </h1>
 
         <p className="font-dm text-gray-400 text-lg sm:text-xl max-w-xl mb-8 leading-relaxed">
-          Grade A UK Tech. iPhones, MacBooks, consoles, headsets and IT assets — delivered across Nigeria.
+          UK-Sourced Components for Nigeria's Builders and Repair Pros. CPUs, GPUs, screens, phone parts, server kit — tested, graded, ready.
         </p>
 
         {/* CTAs */}
@@ -50,11 +50,11 @@ export default function Hero() {
             to="/shop"
             className="inline-flex items-center justify-center gap-2 bg-electric text-black font-syne font-bold px-7 py-3.5 rounded-xl hover:bg-electric/90 transition-all active:scale-95 text-base"
           >
-            Browse Stock
+            Browse Components
             <ArrowRight size={18} />
           </Link>
           <a
-            href="https://wa.me/447700900000?text=Hi%20KomputaVillage%2C%20I%27d%20like%20to%20see%20what%27s%20available."
+            href="https://wa.me/447700900000?text=Hi%20KomputaVillage%2C%20I%20need%20help%20finding%20a%20part."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-dark-card border border-dark-border text-white font-dm font-medium px-7 py-3.5 rounded-xl hover:border-[#25D366]/50 hover:text-[#25D366] transition-all active:scale-95 text-base"
@@ -65,7 +65,7 @@ export default function Hero() {
         </div>
 
         {/* Trust bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-dark-border pt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 border-t border-dark-border pt-8">
           {trustItems.map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2.5 text-sm font-dm text-gray-400">
               <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-electric/10 flex items-center justify-center">

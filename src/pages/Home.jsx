@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Smartphone, Laptop, Gamepad2, Headphones, HardDrive, Monitor } from 'lucide-react'
+import { ArrowRight, Cpu, Smartphone, Laptop, Gamepad2, Headphones, Server, HardDrive, Monitor } from 'lucide-react'
 import Hero from '../components/Hero'
 import TrustBar from '../components/TrustBar'
+import BuildersCorner from '../components/BuildersCorner'
 import ProductCard from '../components/ProductCard'
 import { products } from '../data/products'
 
 const categoryCards = [
-  { id: 'iphones', label: 'iPhones', desc: '9 models in stock', icon: Smartphone, color: 'from-electric/20 to-transparent' },
-  { id: 'laptops', label: 'Laptops & MacBooks', desc: '9 models in stock', icon: Laptop, color: 'from-village/20 to-transparent' },
-  { id: 'consoles', label: 'Consoles', desc: '9 models in stock', icon: Gamepad2, color: 'from-purple-500/20 to-transparent' },
-  { id: 'headsets', label: 'Headsets & Audio', desc: '10 models in stock', icon: Headphones, color: 'from-blue-500/20 to-transparent' },
-  { id: 'laptop-parts', label: 'Laptop Parts', desc: '12 items in stock', icon: HardDrive, color: 'from-orange-500/20 to-transparent' },
-  { id: 'it-assets', label: 'IT Assets', desc: '11 items in stock', icon: Monitor, color: 'from-pink-500/20 to-transparent' },
+  { id: 'laptop-parts', label: 'Laptop Parts', desc: 'CPUs, RAM, SSDs, screens, fans', icon: Laptop, color: 'from-electric/20' },
+  { id: 'desktop-components', label: 'Desktop Components', desc: 'CPUs, GPUs, RAM, motherboards', icon: Cpu, color: 'from-village/20' },
+  { id: 'phone-parts', label: 'Phone Parts', desc: 'iPhone & Samsung screens, cameras', icon: Smartphone, color: 'from-blue-500/20' },
+  { id: 'server-enterprise', label: 'Server / Enterprise', desc: 'RAID, NICs, SAS drives, KVM', icon: Server, color: 'from-purple-500/20' },
+  { id: 'iphones', label: 'Complete iPhones', desc: 'Grade A/B UK iPhones, unlocked', icon: Smartphone, color: 'from-pink-500/20' },
+  { id: 'laptops', label: 'Laptops & MacBooks', desc: 'MacBooks, Dell, HP, Lenovo', icon: Laptop, color: 'from-orange-500/20' },
+  { id: 'consoles', label: 'Consoles', desc: 'PS5, Xbox, Nintendo Switch', icon: Gamepad2, color: 'from-indigo-500/20' },
+  { id: 'headsets', label: 'Audio & Headsets', desc: 'AirPods, Sony, Bose, JBL', icon: Headphones, color: 'from-teal-500/20' },
+  { id: 'it-assets', label: 'IT Assets', desc: 'Monitors, peripherals, routers', icon: Monitor, color: 'from-red-500/20' },
 ]
 
-// Pick 2 per category for featured grid
-const featured = [
+// Featured complete devices (2 per category)
+const featuredDevices = [
   ...products.filter((p) => p.category === 'iphones').slice(0, 2),
   ...products.filter((p) => p.category === 'laptops').slice(0, 2),
   ...products.filter((p) => p.category === 'consoles').slice(0, 2),
-  ...products.filter((p) => p.category === 'headsets').slice(0, 2),
-  ...products.filter((p) => p.category === 'laptop-parts').slice(0, 1),
-  ...products.filter((p) => p.category === 'it-assets').slice(0, 1),
 ]
 
 export default function Home() {
@@ -29,33 +30,71 @@ export default function Home() {
     <>
       <Hero />
 
-      {/* Featured products */}
+      {/* Builder's Corner */}
+      <BuildersCorner />
+
+      {/* Why KomputaVillage */}
+      <section className="bg-dark-card border-y border-dark-border py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1.5 h-5 rounded-full bg-village" />
+              <span className="text-village text-xs font-dm font-semibold uppercase tracking-widest">
+                Why KomputaVillage?
+              </span>
+            </div>
+            <h2 className="font-syne font-black text-2xl sm:text-3xl text-white mb-5 leading-tight">
+              We deconstruct end-of-life UK IT equipment{' '}
+              <span className="text-electric">so you don't have to.</span>
+            </h2>
+            <p className="font-dm text-gray-400 text-base leading-relaxed mb-8">
+              Every SSD, CPU, camera module and GPU is pulled from UK corporate and consumer tech, tested individually, graded, and listed — so you get the part you need without the gamble.
+              Built for the people who build Nigeria's systems.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[
+                { stat: '143+', label: 'Parts in stock', sub: 'Across 9 categories' },
+                { stat: 'Grade A/B', label: 'Every item graded', sub: 'No mystery condition' },
+                { stat: '24hr', label: 'Dispatch turnaround', sub: 'After confirmed payment' },
+              ].map(({ stat, label, sub }) => (
+                <div key={label} className="bg-dark-hover border border-dark-border rounded-2xl p-5">
+                  <p className="font-syne font-black text-2xl text-electric mb-1">{stat}</p>
+                  <p className="font-dm font-semibold text-white text-sm">{label}</p>
+                  <p className="font-dm text-gray-500 text-xs">{sub}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Complete Devices */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="font-syne font-black text-2xl sm:text-3xl text-white">
-              Fresh Stock
+              Complete Devices
             </h2>
             <p className="font-dm text-gray-500 text-sm mt-1">
-              Hand-picked from today's inventory
+              iPhones, MacBooks and consoles — whole and ready to go
             </p>
           </div>
           <Link
-            to="/shop"
+            to="/shop?cat=iphones"
             className="flex items-center gap-1 text-electric text-sm font-dm font-medium hover:gap-2 transition-all"
           >
-            View all <ArrowRight size={16} />
+            Browse <ArrowRight size={16} />
           </Link>
         </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {featured.map((product) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+          {featuredDevices.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
-      {/* Category grid */}
+      {/* Category Grid */}
       <section className="bg-dark-card border-y border-dark-border py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
@@ -64,7 +103,6 @@ export default function Home() {
             </h2>
             <p className="font-dm text-gray-500 text-sm">Everything the Village carries</p>
           </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {categoryCards.map(({ id, label, desc, icon: Icon, color }) => (
               <Link
@@ -72,14 +110,12 @@ export default function Home() {
                 to={`/shop?cat=${id}`}
                 className="group relative overflow-hidden bg-dark-hover border border-dark-border rounded-2xl p-5 hover:border-electric/30 transition-all"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl bg-dark-bg flex items-center justify-center mb-4 group-hover:bg-electric/10 transition-colors">
                     <Icon size={20} className="text-gray-400 group-hover:text-electric transition-colors" />
                   </div>
-                  <h3 className="font-syne font-bold text-white text-sm sm:text-base mb-1">
-                    {label}
-                  </h3>
+                  <h3 className="font-syne font-bold text-white text-sm sm:text-base mb-1">{label}</h3>
                   <p className="font-dm text-gray-500 text-xs">{desc}</p>
                   <div className="mt-3 flex items-center gap-1 text-electric text-xs font-dm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                     Browse <ArrowRight size={12} />
@@ -97,13 +133,13 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <div className="max-w-xl mx-auto">
           <h2 className="font-syne font-black text-2xl sm:text-3xl text-white mb-3">
-            Don't see what you need?
+            Need a specific part?
           </h2>
           <p className="font-dm text-gray-500 text-sm sm:text-base mb-6">
-            We source on request. Send us a WhatsApp and we'll find it from the UK.
+            We source on request from UK suppliers. Tell us what you need and we'll find it.
           </p>
           <a
-            href="https://wa.me/447700900000?text=Hi%2C%20I%27m%20looking%20for%20a%20specific%20item%20from%20KomputaVillage."
+            href="https://wa.me/447700900000?text=Hi%2C%20I%27m%20looking%20for%20a%20specific%20part%20from%20KomputaVillage."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-syne font-bold px-7 py-3.5 rounded-xl transition-all active:scale-95"

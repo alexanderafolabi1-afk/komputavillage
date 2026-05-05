@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, CheckCircle2, AlertCircle, XCircle } from 'lucide-react'
 import { products, getWhatsAppLink, formatPrice } from '../data/products'
 import ProductCard from '../components/ProductCard'
+import ImageGallery from '../components/ImageGallery'
 
 const stockConfig = {
   'in-stock': { label: 'In Stock', icon: CheckCircle2, color: 'text-electric' },
@@ -14,22 +15,22 @@ const gradeConfig = {
     label: 'Grade A',
     badge: 'bg-electric text-black',
     points: [
-      'No scratches or visible damage',
-      'Perfect display — zero dead pixels',
-      '80%+ battery health (phones & laptops)',
-      'All features fully functional',
-      'Unlocked (phones)',
+      'No visible scratches or damage',
+      'Fully functional — all features tested',
+      '80%+ battery/capacity health',
+      'Clean contacts and connectors',
+      'Pulled from certified UK end-of-life stock',
     ],
   },
   B: {
     label: 'Grade B',
     badge: 'bg-village text-black',
     points: [
-      'Light cosmetic marks — nothing major',
-      'Fully functional display and hardware',
+      'Light cosmetic marks from normal use',
+      'All core features fully functional',
       'May have minor scuffs on housing',
-      'All core features work perfectly',
       'Tested before dispatch',
+      'Priced to reflect cosmetics, not performance',
     ],
   },
 }
@@ -37,7 +38,7 @@ const gradeConfig = {
 export default function Product() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const product = products.find((p) => p.id === Number(id))
+  const product = products.find((p) => p.id === id)
 
   if (!product) {
     return (
@@ -50,14 +51,14 @@ export default function Product() {
     )
   }
 
-  const { name, specs, grade, price, image, stock, description, category } = product
+  const { name, spec, grade, price, images, stock, category, subcategory } = product
   const gradeInfo = gradeConfig[grade] || gradeConfig['A']
   const stockInfo = stockConfig[stock] || stockConfig['in-stock']
   const StockIcon = stockInfo.icon
   const isSoldOut = stock === 'sold-out'
 
   const related = products
-    .filter((p) => p.category === category && p.id !== product.id)
+    .filter((p) => p.category === category && p.id !== id)
     .slice(0, 4)
 
   return (
@@ -72,57 +73,39 @@ export default function Product() {
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
-        {/* Image */}
-        <div className="relative rounded-2xl overflow-hidden bg-dark-card border border-dark-border aspect-square">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.src = 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80'
-            }}
-          />
-          <span className={`absolute top-4 left-4 text-sm font-syne font-bold px-3 py-1 rounded-xl ${gradeInfo.badge}`}>
-            {gradeInfo.label}
-          </span>
-        </div>
+        {/* Image gallery */}
+        <ImageGallery images={images} name={name} />
 
         {/* Details */}
         <div className="flex flex-col gap-5">
-          {/* Category */}
           <p className="text-xs font-dm text-gray-500 uppercase tracking-widest">
-            {categoryLabel(category)}
+            {subcategory || category}
           </p>
 
-          {/* Name + specs */}
           <div>
             <h1 className="font-syne font-black text-3xl sm:text-4xl text-white leading-tight mb-2">
               {name}
             </h1>
-            <p className="font-dm text-gray-400 text-sm">{specs}</p>
+            <p className="font-dm text-gray-400 text-sm">{spec}</p>
           </div>
 
-          {/* Price */}
           <p className="font-syne font-black text-4xl text-electric">
             {formatPrice(price)}
           </p>
 
-          {/* Stock status */}
           <div className={`flex items-center gap-2 text-sm font-dm font-medium ${stockInfo.color}`}>
             <StockIcon size={16} />
             {stockInfo.label}
           </div>
 
-          {/* Description */}
-          <p className="font-dm text-gray-400 text-sm leading-relaxed">
-            {description}
-          </p>
-
           {/* Grade info */}
           <div className="bg-dark-card border border-dark-border rounded-2xl p-4">
-            <h3 className="font-syne font-bold text-sm text-white mb-3">
-              {gradeInfo.label} — What This Means
-            </h3>
+            <div className="flex items-center gap-2 mb-3">
+              <span className={`text-xs font-syne font-bold px-2.5 py-1 rounded-lg ${gradeInfo.badge}`}>
+                {gradeInfo.label}
+              </span>
+              <span className="text-xs font-dm text-gray-500">What this means</span>
+            </div>
             <ul className="space-y-1.5">
               {gradeInfo.points.map((point) => (
                 <li key={point} className="flex items-start gap-2 text-xs font-dm text-gray-400">
@@ -136,14 +119,11 @@ export default function Product() {
           {/* CTA */}
           {isSoldOut ? (
             <div className="space-y-3">
-              <button
-                disabled
-                className="w-full py-3.5 rounded-xl bg-dark-border text-gray-500 font-dm font-medium cursor-not-allowed"
-              >
+              <button disabled className="w-full py-3.5 rounded-xl bg-dark-border text-gray-500 font-dm font-medium cursor-not-allowed">
                 Sold Out
               </button>
               <a
-                href={`https://wa.me/447700900000?text=${encodeURIComponent(`Hi, the ${name} is sold out. Can you tell me when it'll be back in stock?`)}`}
+                href={`https://wa.me/447700900000?text=${encodeURIComponent(`Hi, the ${name} is sold out. When will it be back in stock?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 rounded-xl border border-[#25D366]/40 text-[#25D366] font-dm font-medium flex items-center justify-center gap-2 hover:bg-[#25D366]/10 transition-colors"
@@ -164,18 +144,17 @@ export default function Product() {
             </a>
           )}
 
-          {/* Payment note */}
           <p className="text-xs font-dm text-gray-600 text-center">
-            Bank Transfer & Flutterwave accepted · Nationwide delivery available
+            Bank Transfer & Flutterwave accepted · Nationwide delivery
           </p>
         </div>
       </div>
 
-      {/* Related products */}
+      {/* Related */}
       {related.length > 0 && (
         <div>
           <h2 className="font-syne font-black text-xl text-white mb-5">
-            More {categoryLabel(category)}
+            More {subcategory || category}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {related.map((p) => (
@@ -186,18 +165,6 @@ export default function Product() {
       )}
     </div>
   )
-}
-
-function categoryLabel(cat) {
-  const map = {
-    iphones: 'iPhones',
-    laptops: 'Laptops & MacBooks',
-    'laptop-parts': 'Laptop Parts',
-    consoles: 'Consoles',
-    headsets: 'Headsets & Audio',
-    'it-assets': 'IT Assets',
-  }
-  return map[cat] || cat
 }
 
 function WhatsAppIcon({ size = 16 }) {
