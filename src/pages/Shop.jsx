@@ -65,11 +65,15 @@ export default function Shop() {
       {/* Search + filter row */}
       <div className="flex gap-3 mb-4">
         <div className="relative flex-grow">
+          <label htmlFor="shop-search" className="sr-only">
+            Search products
+          </label>
           <Search
             size={16}
             className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
           />
           <input
+            id="shop-search"
             type="search"
             placeholder="Search products…"
             value={search}
